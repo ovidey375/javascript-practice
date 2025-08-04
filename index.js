@@ -97,13 +97,63 @@
 //   console.log(Date.now() - t); // 100
 // });
 
-var cancellable = function (fn, args, t) {
-  const timeoutId = setTimeout(() => {
-    fn(...args);
-  }, t);
+// var cancellable = function (fn, args, t) {
+//   const timeoutId = setTimeout(() => {
+//     fn(...args);
+//   }, t);
 
-  const cancelFn = () => {
-    clearTimeout(timeoutId);
-  };
-  return cancelFn;
+//   const cancelFn = () => {
+//     clearTimeout(timeoutId);
+//   };
+//   return cancelFn;
+// };
+//***Example of Prototype***
+function createUser(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+createUser.prototype.getDetails = function () {
+  console.log(`User name is ${this.name} & age is ${this.age}`);
 };
+
+const user1 = new createUser("avi", 45);
+user1.getDetails();
+const user2 = new createUser("sayn", 27);
+user2.getDetails();
+
+// const arr = [2, 4, 5, 56, 3, 2, 5];
+// console.log(arr.toString())
+// console.log(arr.push(0));
+// console.log(arr.unshift(66));
+// console.log(arr.reverse());
+// console.log(delete arr[2]);
+// const sliceArr = arr.slice(0, 3);
+// console.log(sliceArr);
+// console.log(arr);
+// arr.length = 3;
+// console.log(arr);
+// const fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+// At position 2, add "Lemon" and "Kiwi":
+// fruits.splice(2, 2, "Lemon", "Kiwi");
+// console.log(fruits);
+
+// const newArr=new Set(arr)
+// console.log(newArr);
+
+const users = [
+  { name: "Ava", status: "active", age: 28, location: "Mumbai" },
+  { name: "Leo", status: "inactive", age: 31, location: "Delhi" },
+  { name: "Mia", status: "active", age: 25, location: "Chennai" },
+];
+
+const filterUsers = users
+  .filter(({ status }) => status === "active")
+  .map(({ name, ...details }) => {
+    return { name, details };
+  });
+
+console.log(filterUsers);
+console.log(users);
+
